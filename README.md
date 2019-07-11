@@ -1,5 +1,5 @@
 # 1.锁的底层实现
- java 虚拟机中的同步(Synchronization)基于进入和退出管理(Monitor)对象实现。同步方法，并不是由monitor enter和monitor exit指令来实现同步的，而是由方法调用指令取运行时常量池中方法的 ACC_SYNCHRONIZED 标记来隐式实现的。
+ java 虚拟机中的同步(Synchronization)基于进入和退出管理(Monitor)对象实现。同步方法，并不是由 monitor enter 和 monitor exit 指令来实现同步的，而是由方法调用指令取运行时常量池中方法的 ACC_SYNCHRONIZED 标记来隐式实现的。
  
 ## 1.1 对象内存简图
 ![对象内存简图](https://i.loli.net/2019/07/11/5d26a6c5466ad58228.png "对象内存简图")
@@ -19,3 +19,5 @@
   线程状态图如下：
   
 ![对象内存简图](https://i.loli.net/2019/07/11/5d26ac5209ed875137.png "对象内存简图")
+
+  当多线程并发访问**同一个同步代码**时，首先会进入_EntryList,当线程获取锁标记后，monitor中的_Owner记录此线程，并在monitor中的计数器执行递增计算（+1）代表锁定，其他线程在_EntryList中继续阻塞。诺执行线程调用wait方法，则monitor中的计数器执行赋值为0，并将_Owner标记赋值为null，代表放弃锁，执行线程进入_WaitSet中阻塞；诺执行线程调用notify/notifyAll方法，_WaitSet中的线程被唤醒，进入_EntryList中阻塞，等待获取锁标记。诺执行线程的同步代码执行结束，同样会释放锁标记，monitor中的_Owner标记赋值为null，且计数器赋值为0.
