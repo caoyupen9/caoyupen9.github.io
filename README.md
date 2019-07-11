@@ -14,7 +14,7 @@
   
   在Java虚拟机(HotSpot)中,monitor是有ObjectMonitor实现的。
   
-  ObjectMonitor中有两个队列，_WaitSet和_EntryList,以及_Owner标记。其中_WaitSet是用于管理等待队列(wait方法)线程的，_Owner标记用于记录当前线程。
+  ObjectMonitor中有两个队列_WaitSet和_EntryList,以及_Owner标记。其中_WaitSet是用于管理等待队列(wait方法)线程的，_Owner标记用于记录当前线程。
   
   线程状态图如下：
   
