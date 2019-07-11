@@ -10,9 +10,9 @@
   
   填充数据：由于虚拟机要求对象起始地址必须是8字节的整数倍。填充数据不是必须存在的，仅仅是为了字节对齐。
   
-  当在对象上加锁时，数据是记录在对象头中。当执行synchronize同步方法或同步代码块时，会在对象中记录锁标记，锁标记指向的是monitor对象(也称为管程或监视器锁)的起始地址。每个对象都存在着一个 monitor 与之关联，对象与其 monitor 之间的关系有存在多种实现方式，如monitor可以与对象一起创建销毁或当线程试图获取对象锁时自动生成，但当一个monitor被某个线程持有后，他便处于锁定状态。
+  当在对象上加锁时，数据是记录在对象头中。当执行synchronize同步方法或同步代码块时，会在对象中记录锁标记，锁标记指向的是monitor对象(也称为管程或监视器锁)的起始地址。每个对象都存在着一个monitor与之关联，对象与其monitor之间的关系有存在多种实现方式，如monitor可以与对象一起创建销毁或当线程试图获取对象锁时自动生成，但当一个monitor被某个线程持有后，他便处于锁定状态。
   
-  在Java虚拟机(HotSpot)中，monitor是有ObjectMonitor实现的。
+  在Java虚拟机(HotSpot)中,monitor是有ObjectMonitor实现的。
   
   ObjectMonitor中有两个队列，_WaitSet和_EntryList,以及_Owner标记。其中_WaitSet是用于管理等待队列(wait方法)线程的，_Owner标记用于记录当前线程。
   
